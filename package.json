@@ -1,0 +1,64 @@
+{
+  "name": "dsh-chatroom",
+  "version": "0.1.0",
+  "description": "DSH 聊天室插件：多房间即时通讯，支持文件/图片附件、个人头像与昵称设置，本地 SQLite 存储",
+  "main": "lib/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "node --check lib/index.js && node --check lib/client.js",
+    "test:attachments": "node attachment-test.mjs",
+    "test:client": "node client-test.mjs",
+    "test:migration": "node migration-test.mjs",
+    "test:profile": "node profile-test.mjs",
+    "test": "npm run test:attachments && npm run test:client && npm run test:migration && npm run test:profile"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "chatroom",
+    "im"
+  ],
+  "author": "LLM-ASTR <18722384858@163.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LLM-ASTR/dsh-chatroom.git"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "ws": "^8.18.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "plugin": {
+      "name": "Chatroom",
+      "description": "多房间即时通讯，支持文件/图片附件与个人资料设置"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-modules"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5",
+    "@types/node": "^20.0.0"
+  }
+}

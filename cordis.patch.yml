@@ -1,0 +1,6 @@
+# dsh-chatroom-mvp —— DSH bundle patch
+# 挂载声明：DSH 启动时叠加本 patch，把 Chatroom 插件插入 Web profile 配置树。
+
+- insert:
+    - id: chatroom
+      name: dsh-chatroom-mvp
